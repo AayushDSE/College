@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="den">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🎬 Movie Management System</h1>
+
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#form">Add Movie</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<main>
+
+<section id="dashboard">
+
+    <h2>Dashboard</h2>
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3>Total Movies</h3>
+            <p>120</p>
+        </div>
+
+        <div class="card">
+            <h3>Watched</h3>
+            <p>78</p>
+        </div>
+
+        <div class="card">
+            <h3>Upcoming</h3>
+            <p>42</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="movies">
+
+<h2>Featured Movies</h2>
+
+<div class="movie-grid">
+
+<article class="movie-card">
+
+<figure>
+<img src="https://picsum.photos/300/400?1" alt="Movie">
+<figcaption>Interstellar</figcaption>
+</figure>
+
+<h3>Interstellar</h3>
+
+<p>
+Genre: Sci-Fi
+</p>
+
+<p>
+Rating
+</p>
+
+<progress value="95" max="100"></progress>
+
+<button>View Details</button>
+
+</article>
+
+<article class="movie-card">
+
+<figure>
+<img src="https://picsum.photos/300/400?2" alt="Movie">
+<figcaption>Inception</figcaption>
+</figure>
+
+<h3>Inception</h3>
+
+<p>Genre: Action</p>
+
+<progress value="90" max="100"></progress>
+
+<button>View Details</button>
+
+</article>
+
+<article class="movie-card">
+
+<figure>
+<img src="https://picsum.photos/300/400?3" alt="Movie">
+<figcaption>Avatar</figcaption>
+</figure>
+
+<h3>Avatar</h3>
+
+<p>Genre: Fantasy</p>
+
+<progress value="88" max="100"></progress>
+
+<button>View Details</button>
+
+</article>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Movie Table</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Genre</th>
+<th>Year</th>
+<th>Rating</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>101</td>
+<td>Interstellar</td>
+<td>Sci-Fi</td>
+<td>2014</td>
+<td>9.5</td>
+</tr>
+
+<tr>
+<td>102</td>
+<td>Avatar</td>
+<td>Fantasy</td>
+<td>2009</td>
+<td>8.8</td>
+</tr>
+
+<tr>
+<td>103</td>
+<td>Inception</td>
+<td>Action</td>
+<td>2010</td>
+<td>9.0</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<section id="form">
+
+<h2>Add New Movie</h2>
+
+<form>
+
+<fieldset>
+
+<legend>Movie Information</legend>
+
+<label>Movie Name</label>
+
+<input type="text" placeholder="Enter movie name" required>
+
+<label>Release Date</label>
+
+<input type="date">
+
+<label>Genre</label>
+
+<select>
+
+<option>Action</option>
+<option>Comedy</option>
+<option>Sci-Fi</option>
+<option>Fantasy</option>
+
+</select>
+
+<label>Rating</label>
+
+<input
+type="number"
+min="1"
+max="10"
+step="0.1">
+
+<label>Description</label>
+
+<textarea rows="5"></textarea>
+
+<label>Movie Poster</label>
+
+<input type="file">
+
+<button type="submit">Add Movie</button>
+
+<button type="reset">Reset</button>
+
+</fieldset>
+
+</form>
+
+</section>
+
+<aside>
+
+<h2>Quick Links</h2>
+
+<ul>
+
+<li><a href="#">Top Rated</a></li>
+<li><a href="#">Upcoming Movies</a></li>
+<li><a href="#">Watch Later</a></li>
+
+</ul>
+
+</aside>
+
+<section>
+
+<h2>Movie Trailer</h2>
+
+<iframe
+width="100%"
+height="350"
+src="https://www.youtube.com/embed/zSWdZVtXT7E"
+allowfullscreen>
+</iframe>
+
+</section>
+
+<section id="about">
+
+<h2>About Project</h2>
+
+<details>
+
+<summary>Click to Read</summary>
+
+<p>
+This Movie Management System demonstrates major HTML5 and CSS concepts.
+</p>
+
+</details>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+© 2026 Movie Management System
+</p>
+
+</footer>
+
+</body>
+</html>
