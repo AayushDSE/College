@@ -1,216 +1,679 @@
 <!DOCTYPE html>
-<html lang="den">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Management System</title>
-
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netflix Clone</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-
-    <h1>🎬 Movie Management System</h1>
-
-
-<figure>
-<img src="https://picsum.photos/300/400?2" alt="Movie">
-<figcaption>Inception</figcaption>
-</figure>
-
-<h3>Inception</h3>
-
-<p>Genre: Action</p>
-
-<progress value="90" max="100"></progress>
-
-<button>View Details</button>
-
-</article>
-
-<article class="movie-card">
-
-<figure>
-<img src="https://picsum.photos/300/400?3" alt="Movie">
-<figcaption>Avatar</figcaption>
-
-</figure>
-
-<h3>Avatar</h3>
-
-<p>Genre: Fantasy</p>
-
-<progress value="88" max="100"></progress>
-
-<button>View Details</button>
-
-</article>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Movie Table</h2>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>ID</th>
-<th>Name</th>
-<th>Genre</th>
-<th>Year</th>
-<th>Rating</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td>101</td>
-<td>Interstellar</td>
-<td>Sci-Fi</td>
-<td>2014</td>
-<td>9.5</td>
-</tr>
-
-<tr>
-<td>102</td>
-<td>Avatar</td>
-<td>Fantasy</td>
-<td>2009</td>
-<td>8.8</td>
-</tr>
-
-<tr>
-<td>103</td>
-<td>Inception</td>
-<td>Action</td>
-<td>2010</td>
-<td>9.0</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</section>
-
-<section id="form">
-
-<h2>Add New Movie</h2>
-
-<form>
-
-<fieldset>
-
-<legend>Movie Information</legend>
-
-<label>Movie Name</label>
-
-<input type="text" placeholder="Enter movie name" required>
-
-<label>Release Date</label>
-
-<input type="date">
-
-<label>Genre</label>
-
-<select>
-
-<option>Action</option>
-<option>Comedy</option>
-<option>Sci-Fi</option>
-<option>Fantasy</option>
-
-</select>
-
-<label>Rating</label>
-
-<input
-type="number"
-min="1"
-max="10"
-step="0.1">
-
-<label>Description</label>
-
-<textarea rows="5"></textarea>
-
-<label>Movie Poster</label>
-
-<input type="file">
-
-<button type="submit">Add Movie</button>
-
-<button type="reset">Reset</button>
-
-</fieldset>
-
-</form>
-
-</section>
-
-<aside>
-
-<h2>Quick Links</h2>
-
-<ul>
-
-<li><a href="#">Top Rated</a></li>
-<li><a href="#">Upcoming Movies</a></li>
-<li><a href="#">Watch Later</a></li>
-
-</ul>
-
-</aside>
-
-<section>
-
-<h2>Movie Trailer</h2>
-
-<iframe
-width="100%"
-height="350"
-src="https://www.youtube.com/embed/zSWdZVtXT7E"
-allowfullscreen>
-</iframe>
-
-</section>
-
-<section id="about">
-
-<h2>About Project</h2>
-
-<details>
-
-<summary>Click to Read</summary>
-
-<p>
-This Movie Management System demonstrates major HTML5 and CSS concepts.
-</p>
-
-</details>
-
-</section>
-
-</main>
-
-<footer>
-
-<p>
-© 2026 Movie Management System
-</p>
-
-</footer>
-
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar-left">
+      <div class="logo">NETFLIX</div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#" class="active">Home</a>
+        <a href="#">TV Shows</a>
+        <a href="#">Movies</a>
+        <a href="#">New &amp; Popular</a>
+        <a href="#">My List</a>
+        <a href="#">Browse by Languages</a>
+      </nav>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      </button>
+    </div>
+    <div class="navbar-right">
+      <div class="search-wrap" id="searchWrap">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5L20.49 19l-5-5zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
+        </button>
+        <input type="text" id="searchInput" class="search-input" placeholder="Titles, people, genres">
+      </div>
+      <span class="kids-link">Kids</span>
+      <button class="icon-btn" aria-label="Notifications" id="bellBtn">
+        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <div class="profile" id="profileToggle">
+        <img src="https://picsum.photos/seed/profileicon/40/40" alt="Profile">
+        <svg class="caret" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+        <div class="profile-dropdown" id="profileDropdown">
+          <a href="#">Manage Profiles</a>
+          <a href="#">Account</a>
+          <a href="#">Help Center</a>
+          <hr>
+          <a href="#">Sign out of Netflix Clone</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://picsum.photos/seed/heroshow/1600/900" alt="">
+      <div class="hero-shade-left"></div>
+      <div class="hero-shade-bottom"></div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Shadow Frontier</h1>
+      <div class="hero-meta">
+        <span class="match">98% Match</span>
+        <span class="year">2026</span>
+        <span class="rating">16+</span>
+        <span class="seasons">3 Seasons</span>
+        <span class="hd-badge">HD</span>
+      </div>
+      <p class="hero-desc">
+        When a signal from beyond the edge of the solar system reaches a remote research
+        station, a small crew must decide whether to answer it &mdash; and what it might
+        cost them if they do.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn btn-play" id="heroPlayBtn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          Play
+        </button>
+        <button class="btn btn-info" id="heroInfoBtn" data-title="Shadow Frontier" data-desc="When a signal from beyond the edge of the solar system reaches a remote research station, a small crew must decide whether to answer it — and what it might cost them if they do." data-meta="2026 · 3 Seasons · 16+">
+          <svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
+          More Info
+        </button>
+      </div>
+    </div>
+    <button class="mute-btn" id="muteBtn" aria-label="Toggle sound">
+      <svg id="muteIcon" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM3 9v6h4l5 5V4L7 9H3zm14.14-2.34l-1.42 1.42A7.97 7.97 0 0 1 18 12c0 1.86-.76 3.54-1.98 4.75l1.42 1.42A9.97 9.97 0 0 0 20 12c0-2.42-.98-4.61-2.86-6.34z"/></svg>
+    </button>
+    <div class="age-badge">16+</div>
+  </section>
+
+  <!-- ===== ROWS ===== -->
+  <main class="rows">
+
+    <section class="row">
+      <h2 class="row-title">Trending Now</h2>
+      <div class="row-track">
+        <div class="card" tabindex="0" data-title="Velvet Nights" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend1/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Velvet Nights</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Ember &amp; Ash" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend2/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Ember &amp; Ash</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Silent Order" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend3/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Silent Order</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Glass City" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend4/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Glass City</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Northbound" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend5/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Northbound</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Paper Moonlight" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend6/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Paper Moonlight</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Last Exit" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend7/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Last Exit</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Hollow Coast" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/trend8/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Hollow Coast</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h2 class="row-title">Netflix Originals</h2>
+      <div class="row-track">
+        <div class="card" tabindex="0" data-title="Iron Season" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig1/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Iron Season</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Understudy" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig2/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Understudy</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Faultlines" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig3/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Faultlines</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Midnight Ferry" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig4/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Midnight Ferry</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Redwood" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig5/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Redwood</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Salt &amp; Static" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig6/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Salt &amp; Static</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Long Thaw" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig7/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Long Thaw</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Blackout City" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/orig8/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Blackout City</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h2 class="row-title">Action &amp; Adventure</h2>
+      <div class="row-track">
+        <div class="card" tabindex="0" data-title="Steel Horizon" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act1/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Steel Horizon</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Rogue Current" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act2/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Rogue Current</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Getaway Job" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act3/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Getaway Job</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Highwire" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act4/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Highwire</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Zero Hour" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act5/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Zero Hour</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Ridgeline" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act6/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Ridgeline</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Detonation Point" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act7/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Detonation Point</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Freefall" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/act8/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Freefall</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h2 class="row-title">Comedies</h2>
+      <div class="row-track">
+        <div class="card" tabindex="0" data-title="Small Talk" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com1/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Small Talk</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Office Hours" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com2/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Office Hours</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Bad Neighbors Club" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com3/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Bad Neighbors Club</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Family Style" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com4/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Family Style</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Wingman" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com5/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Wingman</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Reheated" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com6/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Reheated</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Sunday Regulars" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com7/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Sunday Regulars</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Group Chat" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/com8/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Group Chat</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h2 class="row-title">Because You Watched Shadow Frontier</h2>
+      <div class="row-track">
+        <div class="card" tabindex="0" data-title="Deep Signal" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy1/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Deep Signal</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Cold Orbit" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy2/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Cold Orbit</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Station 12" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy3/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Station 12</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Relay" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy4/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Relay</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Aftershock" data-desc="A gripping story that pulls its cast into a situation they can't simply walk away from." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy5/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Aftershock</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Farside" data-desc="An unlikely group is forced together, and what they find changes all of them." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy6/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Farside</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="Low Orbit" data-desc="A quiet premise unravels into something far bigger than anyone expected." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy7/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">Low Orbit</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="card" tabindex="0" data-title="The Return Signal" data-desc="Small choices carry big consequences in this tightly wound story." data-meta="2026 · 16+">
+          <img src="https://picsum.photos/seed/bwy8/300/169" alt="">
+          <div class="card-overlay">
+            <p class="card-title">The Return Signal</p>
+            <div class="card-actions">
+              <button class="card-icon-btn play-mini" aria-label="Play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+              <button class="card-icon-btn add-list" aria-label="Add to My List"><svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></button>
+              <button class="card-icon-btn like-btn" aria-label="Like"><svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></button>
+              <button class="card-icon-btn more-info" aria-label="More info"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4.1.1 1.1 0 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1.1.4 2.2.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c0 1.1-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1.1.4-2.2.4-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-1.1 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1.1-.4-2.2C2 15 2 14.7 2 12s0-3 .1-4.1c0-1.1.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1.1-.4 2.2-.4C8 2 8.3 2 12 2zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.2-3.6a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M22 5.9c-.7.3-1.5.6-2.4.7.9-.5 1.5-1.4 1.8-2.3-.8.5-1.7.8-2.7 1a4.2 4.2 0 0 0-7.2 3.9A12 12 0 0 1 2.9 4.6a4.2 4.2 0 0 0 1.3 5.6c-.7 0-1.3-.2-1.9-.5v.1c0 2 1.4 3.7 3.3 4.1-.3.1-.7.1-1.1.1-.3 0-.5 0-.8-.1a4.2 4.2 0 0 0 4 3A8.5 8.5 0 0 1 2 18.6 12 12 0 0 0 8.5 20.5c7.8 0 12.1-6.5 12.1-12.1v-.6c.8-.6 1.5-1.3 2.1-2.1z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M21.6 7.2s-.2-1.5-.9-2.2c-.8-.9-1.7-.9-2.2-1C15.3 3.8 12 3.8 12 3.8s-3.3 0-6.5.2c-.5.1-1.4.1-2.2 1-.7.7-.9 2.2-.9 2.2S2.2 9 2.2 10.7v1.6c0 1.7.2 3.5.2 3.5s.2 1.5.9 2.2c.8.9 1.9.9 2.4 1 1.7.2 7.3.2 7.3.2s3.3 0 6.5-.2c.5-.1 1.4-.1 2.2-1 .7-.7.9-2.2.9-2.2s.2-1.8.2-3.5v-1.6c0-1.7-.2-3.5-.2-3.5zM9.9 14.6V8.9l5.8 2.9-5.8 2.8z"/></svg></a>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <a href="#">Audio Description</a>
+          <a href="#">Investor Relations</a>
+          <a href="#">Legal Notices</a>
+        </div>
+        <div class="footer-col">
+          <a href="#">Help Center</a>
+          <a href="#">Jobs</a>
+          <a href="#">Cookie Preferences</a>
+        </div>
+        <div class="footer-col">
+          <a href="#">Gift Cards</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Corporate Information</a>
+        </div>
+        <div class="footer-col">
+          <a href="#">Media Center</a>
+          <a href="#">Privacy</a>
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+
+      <button class="service-code">Service Code</button>
+      <p class="footer-copy">&copy; 2026 Netflix Clone &mdash; built for demo purposes only.</p>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL (used by "More Info" on hero + cards) ===== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/></svg>
+      </button>
+      <div class="modal-media">
+        <img id="modalImg" src="" alt="">
+        <div class="modal-media-shade"></div>
+        <div class="modal-media-buttons">
+          <button class="btn btn-play" id="modalPlayBtn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Play
+          </button>
+          <button class="icon-btn round-btn" id="modalAddBtn" aria-label="Add to My List">
+            <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg>
+          </button>
+          <button class="icon-btn round-btn" id="modalLikeBtn" aria-label="Like">
+            <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h2 id="modalTitle"></h2>
+        <p class="modal-meta" id="modalMeta"></p>
+        <p id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST (used for My List / Like confirmations) ===== -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
