@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Database Manager</title>
+</head>
+
+<body>
+
+    <h1>Student Database Manager</h1>
+
+    <label>Student Name:</label><br>
+    <input type="text" id="name">
+
+    <br><br>
+
+    <label>Maths Marks:</label><br>
+    <input type="number" id="maths">
+
+    <br><br>
+
+    <label>Science Marks:</label><br>
+    <input type="number" id="science">
+
+    <br><br>
+
+    <label>English Marks:</label><br>
+    <input type="number" id="english">
+
+    <br><br>
+
+    <button onclick="calculateResult()">
+        Calculate Result
+    </button>
+
+    <hr>
+
+    <h2>Student Result</h2>
+
+    <p>Name: <span id="studentName"></span></p>
+
+    <p>Total Marks: <span id="totalMarks"></span></p>
+
+    <p>Percentage: <span id="percentage"></span></p>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
