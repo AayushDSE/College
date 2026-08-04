@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Marks Table</title>
+</head>
+<body>
+
+  <h1>Student Marks</h1>
+
+  <input type="text" id="name" placeholder="Name">
+  <br><br>
+
+  <input type="number" id="m1" placeholder="Marks 1">
+  <br><br>
+
+  <input type="number" id="m2" placeholder="Marks 2">
+  <br><br>
+
+  <input type="number" id="m3" placeholder="Marks 3">
+  <br><br>
+
+  <button onclick="addStudent()">Add Student</button>
+
+  <h2>Table</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Marks 1</th>
+        <th>Marks 2</th>
+        <th>Marks 3</th>
+        <th>Total</th>
+        <th>Percentage</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
