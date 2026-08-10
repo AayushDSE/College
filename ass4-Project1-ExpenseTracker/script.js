@@ -8,7 +8,7 @@ function addTransaction() {
 
     let amount = Number(document.getElementById("amount").value);
 
-    let income = document.getElementsByName("type");
+    let income = document.getElementsByName("type")[0].checked;
 
     let type;
 
