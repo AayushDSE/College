@@ -1,9 +1,7 @@
-// Arrays to store data
 let descriptions = [];
 let amounts = [];
 let types = [];
 
-// Add Transaction
 function addTransaction() {
 
     let description = document.getElementById("description").value;
@@ -21,13 +19,11 @@ function addTransaction() {
         type = "Expense";
     }
 
-    // Validation
     if (description == "" || amount <= 0) {
         alert("Enter valid details");
         return;
     }
 
-    // Store data
     descriptions.push(description);
     amounts.push(amount);
     types.push(type);
@@ -36,12 +32,10 @@ function addTransaction() {
 
     updateSummary();
 
-    // Clear inputs
     document.getElementById("description").value = "";
     document.getElementById("amount").value = "";
 }
 
-// Display Transactions
 function displayTransactions() {
 
     let output = "";
@@ -71,7 +65,6 @@ function displayTransactions() {
 
 }
 
-// Update Dashboard
 function updateSummary() {
 
     let income = 0;
@@ -104,7 +97,6 @@ function updateSummary() {
 
 }
 
-// Delete Transaction
 function deleteTransaction(index) {
 
     descriptions.splice(index, 1);
