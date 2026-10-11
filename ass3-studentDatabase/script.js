@@ -1,3 +1,4 @@
+
 let names = [];
 let mathsMarks = [];
 let scienceMarks = [];
@@ -5,20 +6,18 @@ let englishMarks = [];
 
 function addStudent() {
     let name = document.getElementById("name").value.trim();
-    let maths = Number(document.getElementById("maths").value);
-    let science = Number(document.getElementById("science").value);
-    let english = Number(document.getElementById("english").value);
 
-    let marksEntered = document.getElementById("maths").value !== "" &&
-                        document.getElementById("science").value !== "" &&
-                        document.getElementById("english").value !== "";
+    let mathsInput = document.getElementById("maths").value;
+    let scienceInput = document.getElementById("science").value;
+    let englishInput = document.getElementById("english").value;
 
-    let marksValid = marksEntered &&
-        maths >= 0 && maths <= 100 &&
-        science >= 0 && science <= 100 &&
-        english >= 0 && english <= 100;
+    let maths = Number(mathsInput);
+    let science = Number(scienceInput);
+    let english = Number(englishInput);
 
-    if (name == "" || !marksValid) {
+    if (name == "" || mathsInput == "" || scienceInput == "" || englishInput == "" ||
+        maths < 0 || maths > 100 || science < 0 || science > 100 ||
+        english < 0 || english > 100) {
         alert("Enter a valid name and marks between 0 and 100 for all subjects.");
         return;
     }
@@ -37,69 +36,70 @@ function addStudent() {
     document.getElementById("name").focus();
 }
 
-function getTotal(index) {
-    return mathsMarks[index] + scienceMarks[index] + englishMarks[index];
+function getTotal(i) {
+    return mathsMarks[i] + scienceMarks[i] + englishMarks[i];
 }
 
-function getPercentage(index) {
-    return (getTotal(index) / 300 * 100).toFixed(2);
+function getPercentage(i) {
+    return (getTotal(i) / 300 * 100).toFixed(2);
 }
 
-function findTopperIndex() {
-    if (names.length === 0) {
-        return -1;
-    }
-    let topperIndex = 0;
+function findTopper() {
+    let topper = 0;
+
     for (let i = 1; i < names.length; i++) {
-        if (getTotal(i) > getTotal(topperIndex)) {
-            topperIndex = i;
+        if (getTotal(i) > getTotal(topper)) {
+            topper = i;
         }
     }
-    return topperIndex;
+
+    return topper;
 }
 
 function displayStudents() {
-    let tableBody = document.getElementById("studentTableBody");
-    let topperBanner = document.getElementById("topperBanner");
+    let table = document.getElementById("studentTableBody");
+    let banner = document.getElementById("topperBanner");
     let topperText = document.getElementById("topperText");
 
-    if (names.length === 0) {
-        tableBody.innerHTML = "<tr id='emptyRow'><td colspan='8' class='empty-note'>No students added yet — fill the form above and click \"Add to Register\".</td></tr>";
-        topperBanner.style.display = "none";
+    if (names.length == 0) {
+        table.innerHTML = "<tr><td colspan='8' class='empty-note'>No students added yet — fill the form above and click \"Add to Register\".</td></tr>";
+        banner.style.display = "none";
         return;
     }
 
-    let topperIndex = findTopperIndex();
-    let output = "";
+    let topper = findTopper();
+    let rows = "";
 
     for (let i = 0; i < names.length; i++) {
-        let isTopper = (i === topperIndex);
-        let rowClass = isTopper ? " class='topper-row'" : "";
-        let stampBadge = isTopper ? " <span class='stamp'>Topper</span>" : "";
+        rows += "<tr" + (i == topper ? " class='topper-row'" : "") + ">";
+        rows += "<td>" + (i + 1) + "</td><td>" + names[i];
 
-        output += "<tr" + rowClass + ">";
-        output += "<td>" + (i + 1) + "</td>";
-        output += "<td><span class='name-cell'>" + names[i] + stampBadge + "</span></td>";
-        output += "<td>" + mathsMarks[i] + "</td>";
-        output += "<td>" + scienceMarks[i] + "</td>";
-        output += "<td>" + englishMarks[i] + "</td>";
-        output += "<td>" + getTotal(i) + "</td>";
-        output += "<td>" + getPercentage(i) + "%</td>";
-        output += "<td><button class='ghost' onclick='deleteStudent(" + i + ")'>Remove</button></td>";
-        output += "</tr>";
+        if (i == topper) {
+            rows += " <span class='stamp'>Topper</span>";
+        }
+
+        rows += "</td>";
+        rows += "<td>" + mathsMarks[i] + "</td>";
+        rows += "<td>" + scienceMarks[i] + "</td>";
+        rows += "<td>" + englishMarks[i] + "</td>";
+        rows += "<td>" + getTotal(i) + "</td>";
+        rows += "<td>" + getPercentage(i) + "%</td>";
+        rows += "<td><button class='ghost' onclick='deleteStudent(" + i + ")'>Remove</button></td>";
+        rows += "</tr>";
     }
 
-    tableBody.innerHTML = output;
+    table.innerHTML = rows;
 
-    topperBanner.style.display = "flex";
-    topperText.innerHTML = names[topperIndex] + " leads the class with " + getTotal(topperIndex) +
-        " / 300 (" + getPercentage(topperIndex) + "%)";
+    banner.style.display = "flex";
+    topperText.innerHTML = names[topper] + " leads the class with " +
+        getTotal(topper) + " / 300 (" + getPercentage(topper) + "%)";
 }
 
-function deleteStudent(index) {
-    names.splice(index, 1);
-    mathsMarks.splice(index, 1);
-    scienceMarks.splice(index, 1);
-    englishMarks.splice(index, 1);
+function deleteStudent(i) {
+    names.splice(i, 1);
+    mathsMarks.splice(i, 1);
+    scienceMarks.splice(i, 1);
+    englishMarks.splice(i, 1);
+
     displayStudents();
 }
