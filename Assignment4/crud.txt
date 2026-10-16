@@ -1,0 +1,220 @@
+## Database
+
+show dbs
+Shows all available databases.
+
+use databaseName
+Creates or switches to a database.
+
+db
+Shows the current database.
+
+show collections
+Shows all collections in the current database.
+
+db.dropDatabase()
+Deletes the current database.
+
+
+## Collection
+
+db.createCollection("users")
+Creates a new collection.
+
+db.users.drop()
+Deletes the users collection.
+
+
+## Create
+
+db.users.insertOne({ name: "Ritesh", age: 21 })
+Inserts one document.
+
+db.users.insertMany([{ name: "Ritesh" }, { name: "Rahul" }])
+Inserts multiple documents.
+
+
+## Read
+
+db.users.find()
+Returns all documents.
+
+db.users.findOne()
+Returns one document.
+
+db.users.find({ age: 21 })
+Returns documents matching the condition.
+
+db.users.findOne({ name: "Ritesh" })
+Returns one document matching the condition.
+
+db.users.find({ age: { $gt: 20 } })
+Returns documents where age is greater than 20.
+
+db.users.find({ age: { $gte: 20 } })
+Returns documents where age is greater than or equal to 20.
+
+db.users.find({ age: { $lt: 25 } })
+Returns documents where age is less than 25.
+
+db.users.find({ age: { $lte: 25 } })
+Returns documents where age is less than or equal to 25.
+
+db.users.find({ age: { $in: [20, 21, 22] } })
+Returns documents where age matches any given value.
+
+db.users.find({ age: { $nin: [20, 21] } })
+Returns documents where age does not match the given values.
+
+db.users.find({ $or: [{ age: 21 }, { city: "Nashik" }] })
+Returns documents matching at least one condition.
+
+
+## Update
+
+db.users.updateOne({ name: "Ritesh" }, { $set: { age: 22 } })
+Updates the first matching document.
+
+db.users.updateMany({ city: "Nashik" }, { $set: { state: "Maharashtra" } })
+Updates all matching documents.
+
+db.users.replaceOne({ name: "Ritesh" }, { name: "Ritesh", age: 22 })
+Replaces the entire matching document.
+
+db.users.updateOne({ name: "Ritesh" }, { $inc: { age: 1 } })
+Increases a numeric field by the specified value.
+
+db.users.updateOne({ name: "Ritesh" }, { $push: { skills: "MongoDB" } })
+Adds a value to an array.
+
+db.users.updateOne({ name: "Ritesh" }, { $pull: { skills: "MongoDB" } })
+Removes a value from an array.
+
+db.users.updateOne({ name: "Ritesh" }, { $unset: { age: "" } })
+Removes a field from a document.
+
+
+## Delete
+
+db.users.deleteOne({ name: "Ritesh" })
+Deletes the first matching document.
+
+db.users.deleteMany({ age: { $lt: 18 } })
+Deletes all matching documents.
+
+db.users.deleteMany({})
+Deletes all documents in the collection.
+
+
+## Sort
+
+db.users.find().sort({ age: 1 })
+Sorts documents in ascending order.
+
+db.users.find().sort({ age: -1 })
+Sorts documents in descending order.
+
+
+## Limit and Skip
+
+db.users.find().limit(5)
+Returns only the first 5 documents.
+
+db.users.find().skip(5)
+Skips the first 5 documents.
+
+
+## Count
+
+db.users.countDocuments()
+Returns the total number of documents.
+
+db.users.countDocuments({ age: 21 })
+Returns the number of documents matching the condition.
+
+
+## Projection
+
+db.users.find({}, { name: 1, age: 1 })
+Returns only the specified fields.
+
+db.users.find({}, { age: 0 })
+Excludes the specified field.
+
+
+## Important Operators
+
+$set
+Sets or updates a field.
+
+$unset
+Removes a field.
+
+$inc
+Increases or decreases a numeric value.
+
+$push
+Adds an element to an array.
+
+$pull
+Removes an element from an array.
+
+$gt
+Greater than.
+
+$gte
+Greater than or equal to.
+
+$lt
+Less than.
+
+$lte
+Less than or equal to.
+
+$in
+Matches any value from a specified list.
+
+$nin
+Does not match values from a specified list.
+
+$or
+Matches at least one condition.
+
+$and
+Matches all specified conditions.
+
+
+## CRUD Summary
+
+Create
+insertOne()
+insertMany()
+
+Read
+find()
+findOne()
+
+Update
+updateOne()
+updateMany()
+replaceOne()
+
+Delete
+deleteOne()
+deleteMany()
+
+
+## Common Workflow
+
+use myDatabase
+
+db.users.insertOne({ name: "Ritesh", age: 21 })
+
+db.users.find()
+
+db.users.updateOne(
+  { name: "Ritesh" },
+  { $set: { age: 22 } }
+)
+
+db.users.deleteOne({ name: "Ritesh" })
