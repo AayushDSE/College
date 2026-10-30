@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
 
-// Fix Windows DNS resolution for MongoDB Atlas SRV records
+// Fix Windows DNS resolution for MongoDB Atlas 
 dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const app = express();
