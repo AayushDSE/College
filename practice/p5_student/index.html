@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Records</title>
+</head>
+
+<body>
+
+    <h2>Student Details</h2>
+
+    Name: <input id="name"><br><br>
+    Roll No: <input id="roll"><br><br>
+
+    Mark 1: <input type="number" id="m1"><br><br>
+    Mark 2: <input type="number" id="m2"><br><br>
+    Mark 3: <input type="number" id="m3"><br><br>
+
+    <button onclick="addStudent()">Add Student</button>
+
+    <h3>Records</h3>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Roll</th>
+                <th>Total</th>
+                <th>Percentage</th>
+            </tr>
+        </thead>
+        <tbody id="records"></tbody>
+    </table>
+
+    <h3 id="topper">Topper:</h3>
+
+    <script>
+        let students = [];
+
+        function addStudent() {
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+
+            let m1 = Number(document.getElementById("m1").value);
+            let m2 = Number(document.getElementById("m2").value);
+            let m3 = Number(document.getElementById("m3").value);
+
+            let total = m1 + m2 + m3;
+            let percentage = total / 3;
+
+            let student = {
+                name: name,
+                roll: roll,
+                total: total,
+                percentage: percentage
+            };
+
+            students.push(student);
+
+            let row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${name}</td>
+                <td>${roll}</td>
+                <td>${total}</td>
+                <td>${percentage.toFixed(2)}%</td>
+            `;
+
+            document.getElementById("records").appendChild(row);
+
+            let topper = students[0];
+
+            for (let s of students) {
+                if (s.percentage > topper.percentage) {
+                    topper = s;
+                }
+            }
+
+            document.getElementById("topper").innerHTML =
+                "Topper: " + topper.name;
+        }
+    </script>
+
+</body>
+</html>

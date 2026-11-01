@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Traffic Signal</title>
+
+    <style>
+        .signal {
+            background: black;
+            padding: 10px;
+            width: 70px;
+        }
+
+        .light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: gray;
+            margin: 8px auto;
+        }
+
+        .red {
+            animation: red 6s infinite;
+        }
+
+        .yellow {
+            animation: yellow 6s infinite;
+        }
+
+        .green {
+            animation: green 6s infinite;
+        }
+
+        @keyframes red {
+            0%, 30% { background: red; }
+            30%, 100% { background: gray; }
+        }
+
+        @keyframes yellow {
+            0%, 39% { background: gray; }
+            40%, 49% { background: yellow; }
+            50%, 100% { background: gray; }
+        }
+
+        @keyframes green {
+            0%, 49% { background: gray; }
+            50%, 100% { background: green; }
+        }
+
+        .road {
+            background: lightgray;
+            height: 100px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .car {
+            background: blue;
+            width: 100px;
+            height: 40px;
+            position: relative;
+            top: 30px;
+            animation: move 6s infinite;
+        }
+
+        @keyframes move {
+            0%, 49% { transform: translateX(0); }
+            100% { transform: translateX(600px); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Traffic Signal</h2>
+
+    <div class="signal">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+    </div>
+
+    <div class="road">
+        <div class="car"></div>
+    </div>
+
+</body>
+</html>

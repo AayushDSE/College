@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paint</title>
+    <style>
+        canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Paint Application</h2>
+
+    Color:
+    <input type="color" id="color">
+
+    Brush Size:
+    <input type="range" id="size" min="1" max="20" value="5">
+
+    <button onclick="clearCanvas()">Clear</button>
+
+    <br><br>
+
+    <canvas id="paint" width="600" height="400"></canvas>
+
+    <script>
+        let canvas = document.getElementById("paint");
+        let ctx = canvas.getContext("2d");
+        let drawing = false;
+
+        canvas.onmousedown = function() {
+            drawing = true;
+        };
+
+        window.onmouseup = function() {
+            drawing = false;
+        };
+
+        canvas.onmousemove = function(event) {
+            if (drawing) {
+                ctx.fillStyle = document.getElementById("color").value;
+
+                let size = document.getElementById("size").value;
+
+                ctx.beginPath();
+                ctx.arc(event.offsetX, event.offsetY, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        };
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+
+</body>
+</html>

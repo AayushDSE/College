@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        nav {
+            background: black;
+            padding: 15px;
+        }
+
+        a {
+            color: white;
+            margin: 15px;
+        }
+
+        form {
+            width: 300px;
+            margin: 30px auto;
+        }
+
+        input, select, textarea {
+            padding: 8px;
+            margin: 8px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Register</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <form>
+        <h2>Student Registration</h2>
+
+        Name:
+        <input type="text" required>
+
+        Email:
+        <input type="email" required>
+
+        Password:
+        <input type="password" required>
+
+        Gender:
+        <select>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        Address:
+        <textarea></textarea>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+</body>
+</html>
