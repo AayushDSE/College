@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    nav{
+        background-color: black;
+        padding: 15px
+    }
+
+    a{
+        color: white;
+        margin: 15px;
+    }
+
+    form{
+        width: 300px;
+        margin: 30px auto;
+    }
+
+    input, select, button{
+        padding: 10px;
+        margin: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+</style>
+
+<body>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Search</a>
+        <a href="#">Settings</a>
+    </nav>
+
+    <h2>My College Webpage</h2>
+
+    <form action="index.html" method="get">
+        Name:
+        <input type="text" required>
+
+        Roll No:
+        <input type="number" required>
+
+        Password:
+        <input type="password" required>
+
+        Email:
+        <input type="email" required>
+
+        Gender:
+        <select>
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+</body>
+</html>

@@ -5,98 +5,57 @@ const app = express();
 
 app.use(express.json());
 
-// Connect to MongoDB
+// Connect MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/college")
-    .then(() => console.log("MongoDB connected"))
+    .then(() => console.log("Database Connected"))
     .catch(err => console.log(err));
 
-// Student model
-const Student = mongoose.model("Student", new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
+// Student Model
+const Student = mongoose.model("Student", {
+    name: String,
     rollNo: Number,
     course: String
-}));
+});
 
-// CREATE: Add a student
+// CREATE
 app.post("/students", async (req, res) => {
-    try {
-        const student = await Student.create(req.body);
-        res.status(201).json(student);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
+    let student = await Student.create(req.body);
+    res.json(student);
 });
 
-// READ: Get all students
+// READ
 app.get("/students", async (req, res) => {
-    try {
-        const students = await Student.find();
-        res.json(students);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    let students = await Student.find();
+    res.json(students);
 });
 
-// UPDATE: Change a student by MongoDB ID
+// UPDATE - Practical 10
 app.put("/students/:id", async (req, res) => {
-    try {
-        const student = await Student.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true, runValidators: true }
-        );
+    let student = await Student.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+    );
 
-        if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
-        }
-
-        res.json(student);
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
+    res.json(student);
 });
 
-// SEARCH: Find students by name
+// SEARCH - Practical 11
 app.get("/students/search/:name", async (req, res) => {
-    try {
-        const students = await Student.find({
-            name: {
-                $regex: req.params.name,
-                $options: "i"
-            }
-        });
+    let students = await Student.find({
+        name: { $regex: req.params.name, $options: "i" }
+    });
 
-        res.json(students);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    res.json(students);
 });
 
-// DELETE: Remove a student by MongoDB ID
+// DELETE - Practical 12
 app.delete("/students/:id", async (req, res) => {
-    try {
-        const student = await Student.findByIdAndDelete(
-            req.params.id
-        );
-
-        if (!student) {
-            return res.status(404).json({
-                message: "Student not found"
-            });
-        }
-
-        res.json({ message: "Student deleted successfully" });
-    } catch (err) {
-        res.status(400).json({ error: err.message });
-    }
+    await Student.findByIdAndDelete(req.params.id);
+    res.json({ message: "Student Deleted" });
 });
 
-// Start the server
+// Start Server
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
